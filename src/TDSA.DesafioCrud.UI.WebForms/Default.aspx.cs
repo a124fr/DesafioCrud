@@ -17,8 +17,13 @@ namespace TDSA.DesafioCrud.UI.WebForms
             {
                 using (IClienteAppService clienteAppService = new ClienteAppService())
                 {
-                    grid.DataSource = clienteAppService.CarregarTodos();
+                    var clientes = clienteAppService.CarregarTodos();
+
+                    grid.DataSource = clientes;
                     grid.DataBind();
+
+                    gridView.DataSource = clientes;
+                    gridView.DataBind();
                 }
             }
             catch { }   

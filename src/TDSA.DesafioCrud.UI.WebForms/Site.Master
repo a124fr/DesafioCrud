@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TDSA.DesafioCrud.UI.WebForms.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Teste 1</a></li>
+                <li><a href="#">Teste 2</a></li>
+                <li><a href="#">Teste 3</a></li>
+                <li><a href="#">Teste 4</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <div>   
+       <asp:ContentPlaceHolder ID="footer" runat="server">
+       </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>
