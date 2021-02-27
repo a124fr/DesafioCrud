@@ -11,23 +11,5 @@ namespace TDSA.DesafioCrud.UI.WebForms {
     
     
     public partial class Default {
-        
-        /// <summary>
-        /// grid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid grid;
-        
-        /// <summary>
-        /// gridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridView;
     }
 }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using TDSA.DesafioCrud.Application.Interfaces;
-using TDSA.DesafioCrud.Application.Services;
 
-namespace TDSA.DesafioCrud.UI.WebForms
+namespace TDSA.DesafioCrud.UI.WebForms.Views
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class AtualizarCliente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
