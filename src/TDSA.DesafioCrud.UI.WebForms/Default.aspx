@@ -8,7 +8,6 @@
 <div>
     <asp:GridView ID="gridView" runat="server"></asp:GridView>
 </div> --%>    
-    <h1>Página Principal</h1>
-    <a href="~/Views/pgCliente.aspx" runat="server">Cliente</a>
+    <h1>Página Principal</h1>    
 
 </asp:Content>

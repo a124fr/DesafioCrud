@@ -49,6 +49,8 @@ namespace TDSA.DesafioCrud.Infra.Data.Repository
         public void Remover(int id)
         {
             var entity = new TEntity { Id = id };
+            var entry = _Db.Entry(entity);
+            entry.State = EntityState.Deleted;
             _DbSet.Remove(entity);
             SaveChanges();
         }

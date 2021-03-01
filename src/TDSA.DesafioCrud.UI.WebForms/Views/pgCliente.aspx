@@ -1,12 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pgCliente.aspx.cs" Inherits="TDSA.DesafioCrud.UI.WebForms.Views.pgCliente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">    
+    
+    <div class="divMensagem" runat="server">
+    </div>
+
     <a href="~/Views/CadastroCliente.aspx" runat="server">Adicionar Cliente</a>
 
     <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="False"
-        ItemType="TDSA.DesafioCrud.Application.ViewModels.ClienteViewModel" EnableViewState="False" CssClass="gridClientes">
+        ItemType="TDSA.DesafioCrud.Application.ViewModels.ClienteViewModel" EnableViewState="False" CssClass="gridClientes table table-hover table-sm">
         <Columns>
+            <asp:BoundField DataField="Id" HeaderText="#" />
             <asp:BoundField DataField="Nome" HeaderText="Nome" />            
             <asp:BoundField DataField="DataNascimento" HeaderText="Data Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
             <asp:TemplateField HeaderText="Ações">

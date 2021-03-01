@@ -10,8 +10,24 @@ using TDSA.DesafioCrud.Application.ViewModels;
 
 namespace TDSA.DesafioCrud.UI.WebForms.Views
 {
-    public partial class Cadastro : System.Web.UI.Page
+    public partial class CadastroCliente : System.Web.UI.Page
     {
+        private IClienteAppService _clienteAppService;
+
+        protected override void OnInit(EventArgs e)
+        {
+            _clienteAppService = new ClienteAppService();
+            base.OnInit(e);
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            if (_clienteAppService != null)
+                _clienteAppService.Dispose();
+
+            base.OnUnload(e);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -19,52 +35,26 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
 
         protected void btnCadastrar_Click(object sender, EventArgs e)
         {
-            var erros = new List<string>();
-
             try
             {
-                string nome = txtNome.Text;
-                string dataNascimento = txtDataNascimento.Text;
-
-                bool validacao = false;
-
-                if(String.IsNullOrEmpty(nome))
+                if (Page.IsValid)
                 {
-                    erros.Add("O Campo nome é obrigatório");
-                    validacao = true;
-                }
+                    string nome = txtNome.Text;
+                    string dataNascimento = txtDataNascimento.Text;
 
-                if(String.IsNullOrEmpty(dataNascimento))
-                {
-                    erros.Add("O Campo E-mail é obrigatório");
-                    validacao = true;
-                }
-                
-                if(validacao)
-                {
-                    throw new Exception("Ocorreu um erro!");
-                }
+                    var cliente = new ClienteViewModel();
+                    cliente.Nome = nome;
+                    cliente.DataNascimento = DateTime.Parse(dataNascimento);
+                    cliente.Ativo = true;
+                    _clienteAppService.Adicionar(cliente);
 
-                var cliente = new ClienteViewModel();
-                cliente.Nome = nome;
-                cliente.DataNascimento = DateTime.Parse(dataNascimento);
-                cliente.Ativo = true;
-
-                using(IClienteAppService clienteAppService = new ClienteAppService())
-                {
-                    clienteAppService.Adicionar(cliente);
+                    var mensagem = "O Cliente foi cadastrado com sucesso!";
+                    Response.Redirect("~/Views/pgCliente.aspx?msg="+ mensagem);
                 }
-
-                Response.Redirect("~/Default.aspx");
             }
             catch (Exception ex)
             {
                 lblMensagensErros.InnerHtml = "<p>" + ex.Message + "</p>";
-
-                erros.ForEach(erro =>
-                {
-                    lblMensagensErros.InnerHtml += "<p>" + erro + "</p>";
-                });
             }
         }
     }

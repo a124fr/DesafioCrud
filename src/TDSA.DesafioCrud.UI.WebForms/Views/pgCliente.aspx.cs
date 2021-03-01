@@ -12,18 +12,30 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
 {
     public partial class pgCliente : System.Web.UI.Page
     {
+        private IClienteAppService _clienteAppService;
+
+        protected override void OnInit(EventArgs e)
+        {
+            _clienteAppService = new ClienteAppService();
+            base.OnInit(e);
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            if (_clienteAppService != null)
+                _clienteAppService.Dispose();
+
+            base.OnUnload(e);
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                using (IClienteAppService clienteAppService = new ClienteAppService())
-                {
-                    var clientes = clienteAppService.CarregarTodos();
-
-
-                    gridClientes.DataSource = clientes;
-                    gridClientes.DataBind();
-                }
+                var clientes = _clienteAppService.CarregarTodos();
+                gridClientes.DataSource = clientes;
+                gridClientes.DataBind();
             }
             catch { }
         }

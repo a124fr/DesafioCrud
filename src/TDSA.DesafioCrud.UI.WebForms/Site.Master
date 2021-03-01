@@ -4,25 +4,44 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Principal</title>
+    
+    <link href="/Content/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    
     <script src="/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="/Scripts/popper.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Teste 1</a></li>
-                <li><a href="#">Teste 2</a></li>
-                <li><a href="#">Teste 3</a></li>
-                <li><a href="#">Teste 4</a></li>
-            </ul>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <!-- a class="navbar-brand" href="#">Sistema</!-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="~/Default.aspx" runat="server">Home</a>
+              </li>
+              <li class="nav-item active">                
+                <a class="nav-link" href="~/Views/pgCliente.aspx" runat="server">Cliente <span class="sr-only">(current)</span></a>
+              </li>
+              <!-- li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </!-->              
+            </ul>            
+          </div>
         </nav>
     </header>
 
     <form id="form1" runat="server">
-        <div>
+        <div class="container">
             <asp:ContentPlaceHolder ID="Content" runat="server">
             </asp:ContentPlaceHolder>
         </div>
