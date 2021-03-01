@@ -14,6 +14,7 @@ namespace TDSA.DesafioCrud.Application.Interfaces
         ClienteViewModel CarregarUm(int id);        
         void Adicionar(ClienteViewModel clienteViewModel);
         void Atualizar(ClienteViewModel clienteViewModel);
+        void GerenciarSituacao(int id, bool op);
         void Remover(int id);
     }
 }

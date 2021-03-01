@@ -38,7 +38,7 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
                     var clientes = _clienteAppService.CarregarTodos();
                     gridClientes.DataSource = clientes;
                     gridClientes.DataBind();
-
+                    
                     if(!String.IsNullOrEmpty(Request.QueryString["msg"]))
                     {
                         divMensagem.Visible = true;
@@ -60,6 +60,24 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
                 using (IClienteAppService clienteAppService = new ClienteAppService())
                 {
                     clienteAppService.Remover(id);
+                }
+
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        [WebMethod]
+        public static string GerenciarSituacaoCliente(int id, bool op)
+        {
+            try
+            {
+                using (IClienteAppService clienteAppService = new ClienteAppService())
+                {
+                    clienteAppService.GerenciarSituacao(id, op);
                 }
 
                 return "OK";

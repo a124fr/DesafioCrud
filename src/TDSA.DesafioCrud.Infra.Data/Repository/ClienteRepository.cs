@@ -15,5 +15,20 @@ namespace TDSA.DesafioCrud.Infra.Data.Repository
         {
             return _DbSet.Where(c => c.Ativo == true).ToList();
         }
+
+        public void GerenciarSituacao(int id, bool op)
+        {
+            var cliente = _Db.Clientes.FirstOrDefault(c => c.Id == id);
+            
+            if(op)
+            {
+                cliente.Ativo = false;
+            } else
+            {
+                cliente.Ativo = true;
+            }
+
+            Atualizar(cliente);
+        }
     }
 }

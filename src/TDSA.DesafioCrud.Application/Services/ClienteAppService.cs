@@ -47,7 +47,12 @@ namespace TDSA.DesafioCrud.Application.Services
         {
             return Mapper.Map<ClienteViewModel>(_clienteRepository.CarregarUm(id));
         }
-        
+
+        public void GerenciarSituacao(int id, bool op)
+        {
+            _clienteRepository.GerenciarSituacao(id, op);
+        }
+
         public void Remover(int id)
         {
             _clienteRepository.Remover(id);

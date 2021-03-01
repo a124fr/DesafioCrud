@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pgCliente.aspx.cs" Inherits="TDSA.DesafioCrud.UI.WebForms.Views.pgCliente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <style>
+        .clienteDesativo {
+            background-color:#DDD;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">    
     <br />
@@ -15,12 +22,13 @@
 
     <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="False"
         ItemType="TDSA.DesafioCrud.Application.ViewModels.ClienteViewModel" EnableViewState="False" CssClass="gridClientes table table-hover table-sm">
-        <Columns>
+        <Columns>              
             <asp:BoundField DataField="Id" HeaderText="#" />
             <asp:BoundField DataField="Nome" HeaderText="Nome" />            
             <asp:BoundField DataField="DataNascimento" HeaderText="Data Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
             <asp:TemplateField HeaderText="Ações">
                 <ItemTemplate>         
+                    <input type="hidden" data-item="<%#: Eval("Ativo") %>" value='<%#: Eval("Id") %>'/>
                     <a class="btn btn-primary" href="/Views/AtualizarCliente.aspx?Id=<%#: Eval("Id") %>">Atualizar</a>                      
                     <a class="btn btn-danger"href="#" onclick="excluirCliente(<%#: Eval("Id") %>, this)">Excluir</a>
                 </ItemTemplate>
@@ -31,6 +39,47 @@
     
 
     <script type="text/javascript">
+
+        $(".gridClientes").children().children().click(function () {
+            var linhaTr = $(this).children();
+            $(this).children().find('input[type=hidden]').each(function () {
+                console.log($(this).attr('value'));
+                console.log($(this).attr('data-item'));
+                
+                var id = $(this).attr('value');
+                var op = String($(this).attr('data-item'));                
+
+                gerenciarSituacaoCliente(id, op, linhaTr);
+
+            });
+        });
+
+        function gerenciarSituacaoCliente(id, op, linhaTr) {
+            $.ajax({
+                    type:"POST",
+                    url: "pgCliente.aspx/GerenciarSituacaoCliente",
+                    data: JSON.stringify({id:id, op:op}),
+                    dataType: "json",
+                    contentType: "application/json;charset=uft-8"
+                })
+                    .done(function (resposta) {                        
+                        if (resposta.d == "OK") {
+
+                            if (op == 'True') {
+                                linhaTr.addClass("clienteDesativo");
+                            } else {
+                                linhaTr.removeClass("clienteDesativo");
+                            }
+                            
+                            
+                        } else {
+                            alert("Ocorreu algum erro na operacao gerenciar situacao  do cliente! " + resposta);
+                        }
+                              
+                    
+                  });
+        };
+
         function excluirCliente(id, item) {
 
             if (window.confirm("Deseja excluir o Cliente ID:"+id+" ?")) {
@@ -41,8 +90,7 @@
                     dataType: "json",
                     contentType: "application/json;charset=uft-8"
                 })
-                    .done(function (resposta) {
-                        console.log(resposta);
+                    .done(function (resposta) {                        
                         if (resposta.d == "OK") {
                             alert('O cliente foi excluido com Sucesso!');
                             $(item).closest('tr').remove();

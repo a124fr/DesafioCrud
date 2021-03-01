@@ -10,5 +10,6 @@ namespace TDSA.DesafioCrud.Domain.Interfaces
     public interface IClienteRepository : IRepository<Cliente>
     {
         IEnumerable<Cliente> CarregarAtivos();
+        void GerenciarSituacao(int id, bool op);
     }
 }
