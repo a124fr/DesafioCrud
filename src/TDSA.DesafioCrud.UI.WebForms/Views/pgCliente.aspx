@@ -40,21 +40,39 @@
 
     <script type="text/javascript">
 
-        $(".gridClientes").children().children().click(function () {
-            var linhaTr = $(this).children();
+        $(".gridClientes").children().children().each(function () {            
+            var linhaTr = $(this);
+            $(this).children().find('input[type=hidden]').each(function () {
+                console.log($(this).attr('value'));
+                console.log($(this).attr('data-item'));
+                
+                var op = String($(this).attr('data-item')); 
+                if (op == 'False') {
+                    linhaTr.addClass("clienteDesativo");                    
+                } else {
+                    linhaTr.removeClass("clienteDesativo");                    
+                }
+
+            });
+        });
+
+
+        $(".gridClientes").children().children().click(function () {            
+            var linhaTr = $(this);
             $(this).children().find('input[type=hidden]').each(function () {
                 console.log($(this).attr('value'));
                 console.log($(this).attr('data-item'));
                 
                 var id = $(this).attr('value');
                 var op = String($(this).attr('data-item'));                
+                var input = $(this);
 
-                gerenciarSituacaoCliente(id, op, linhaTr);
+                gerenciarSituacaoCliente(id, op, linhaTr, input);
 
             });
         });
 
-        function gerenciarSituacaoCliente(id, op, linhaTr) {
+        function gerenciarSituacaoCliente(id, op, linhaTr, input) {
             $.ajax({
                     type:"POST",
                     url: "pgCliente.aspx/GerenciarSituacaoCliente",
@@ -67,8 +85,10 @@
 
                             if (op == 'True') {
                                 linhaTr.addClass("clienteDesativo");
+                                input.attr("data-item", 'False');
                             } else {
                                 linhaTr.removeClass("clienteDesativo");
+                                input.attr("data-item", 'True');
                             }
                             
                             
