@@ -2,11 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">    
-    
-    <div class="divMensagem" runat="server">
+    <br />
+
+    <h1>Clientes</h1>
+    <br />
+
+    <div id="divMensagem" runat="server" class="alert alert-success" visible="false">
     </div>
 
-    <a href="~/Views/CadastroCliente.aspx" runat="server">Adicionar Cliente</a>
+    
+    <a class="btn btn-primary" href="~/Views/CadastroCliente.aspx" runat="server">Adicionar Cliente</a>
 
     <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="False"
         ItemType="TDSA.DesafioCrud.Application.ViewModels.ClienteViewModel" EnableViewState="False" CssClass="gridClientes table table-hover table-sm">
@@ -16,13 +21,14 @@
             <asp:BoundField DataField="DataNascimento" HeaderText="Data Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
             <asp:TemplateField HeaderText="Ações">
                 <ItemTemplate>         
-                    <a href="/Views/AtualizarCliente.aspx?Id=<%#: Eval("Id") %>">Atualizar</a> |                     
-                    <a href="#" onclick="excluirCliente(<%#: Eval("Id") %>, this)">Excluir</a>
+                    <a class="btn btn-primary" href="/Views/AtualizarCliente.aspx?Id=<%#: Eval("Id") %>">Atualizar</a>                      
+                    <a class="btn btn-danger"href="#" onclick="excluirCliente(<%#: Eval("Id") %>, this)">Excluir</a>
                 </ItemTemplate>
             </asp:TemplateField> 
         </Columns>
         
     </asp:GridView>
+    
 
     <script type="text/javascript">
         function excluirCliente(id, item) {
@@ -37,8 +43,13 @@
                 })
                     .done(function (resposta) {
                         console.log(resposta);
-                        alert('O cliente foi excluido com Sucesso!');
-                        $(item).closest('tr').remove();                    
+                        if (resposta.d == "OK") {
+                            alert('O cliente foi excluido com Sucesso!');
+                            $(item).closest('tr').remove();
+                        } else {
+                            alert("Ocorreu algum erro ao tenta excluir cliente! " + resposta);
+                        }
+                              
                     
                   });
             }

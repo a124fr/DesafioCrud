@@ -31,13 +31,25 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if(!Page.IsPostBack)
             {
-                var clientes = _clienteAppService.CarregarTodos();
-                gridClientes.DataSource = clientes;
-                gridClientes.DataBind();
+                try
+                {
+                    var clientes = _clienteAppService.CarregarTodos();
+                    gridClientes.DataSource = clientes;
+                    gridClientes.DataBind();
+
+                    if(!String.IsNullOrEmpty(Request.QueryString["msg"]))
+                    {
+                        divMensagem.Visible = true;
+                        divMensagem.InnerHtml = Request.QueryString["msg"];
+                    }
+                }
+                catch
+                {
+                    throw;
+                }
             }
-            catch { }
         }
 
         [WebMethod]

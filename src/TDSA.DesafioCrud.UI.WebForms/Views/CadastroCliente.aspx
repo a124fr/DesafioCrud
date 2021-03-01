@@ -23,7 +23,7 @@
     </div>
     
     <div>
-        <asp:button runat="server" text="Cadastrar" ID="btnCadastrar" OnClick="btnCadastrar_Click" />
+        <asp:button runat="server" text="Cadastrar" ID="btnCadastrar" OnClick="btnCadastrar_Click" CssClass="btn btn-primary" />
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">

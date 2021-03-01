@@ -69,7 +69,8 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
                     cliente.Ativo = true;
                     _clienteAppService.Atualizar(cliente);
 
-                    Response.Redirect("~/Views/pgCliente.aspx");
+                    var mensagem = "O Cliente foi atualizado com sucesso!";
+                    Response.Redirect("~/Views/pgCliente.aspx?msg=" + mensagem);
                 }
             }
             catch (Exception ex)

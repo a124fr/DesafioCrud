@@ -13,6 +13,15 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views {
     public partial class pgCliente {
         
         /// <summary>
+        /// divMensagem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMensagem;
+        
+        /// <summary>
         /// gridClientes control.
         /// </summary>
         /// <remarks>

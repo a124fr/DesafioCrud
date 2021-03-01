@@ -25,7 +25,7 @@
         </div>
     
         <div>
-            <asp:button runat="server" text="Atualizar" ID="btnAtualizar" OnClick="btnAtualizar_Click" />
+            <asp:button runat="server" text="Atualizar" ID="btnAtualizar" OnClick="btnAtualizar_Click" CssClass="btn btn-primary" />
         </div>
     </div>
 </asp:Content>
