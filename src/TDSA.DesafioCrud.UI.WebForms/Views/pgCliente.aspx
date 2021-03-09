@@ -43,8 +43,8 @@
         $(".gridClientes").children().children().each(function () {            
             var linhaTr = $(this);
             $(this).children().find('input[type=hidden]').each(function () {
-                console.log($(this).attr('value'));
-                console.log($(this).attr('data-item'));
+                //console.log($(this).attr('value'));
+                //console.log($(this).attr('data-item'));
                 
                 var op = String($(this).attr('data-item')); 
                 if (op == 'False') {
@@ -60,8 +60,8 @@
         $(".gridClientes").children().children().click(function () {            
             var linhaTr = $(this);
             $(this).children().find('input[type=hidden]').each(function () {
-                console.log($(this).attr('value'));
-                console.log($(this).attr('data-item'));
+                //console.log($(this).attr('value'));
+                //console.log($(this).attr('data-item'));
                 
                 var id = $(this).attr('value');
                 var op = String($(this).attr('data-item'));                
@@ -92,8 +92,8 @@
                             }
                             
                             
-                        } else {
-                            alert("Ocorreu algum erro na operacao gerenciar situacao  do cliente! " + resposta);
+                        } else {                            
+                            alert("Ocorreu algum erro na operacao gerenciar situacao  do cliente! " + resposta.d);
                         }
                               
                     

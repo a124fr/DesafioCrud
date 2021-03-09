@@ -18,7 +18,8 @@ namespace TDSA.DesafioCrud.Infra.Data.Repository
 
         public void GerenciarSituacao(int id, bool op)
         {
-            var cliente = _Db.Clientes.FirstOrDefault(c => c.Id == id);
+            //var cliente = _Db.Clientes.FirstOrDefault(c => c.Id == id);
+            var cliente = _DbSet.FirstOrDefault(c => c.Id == id);
             
             if(op)
             {

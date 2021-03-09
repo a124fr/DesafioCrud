@@ -98,6 +98,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ContextModuleHandler.cs" />
     <Compile Include="Handlers\TelefoneClienteHandler.ashx.cs">
       <DependentUpon>TelefoneClienteHandler.ashx</DependentUpon>
     </Compile>

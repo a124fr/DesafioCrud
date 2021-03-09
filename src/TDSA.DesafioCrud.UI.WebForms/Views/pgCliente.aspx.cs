@@ -14,20 +14,25 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
     {
         private IClienteAppService _clienteAppService;
 
+        //protected override void OnInit(EventArgs e)
+        //{
+        //    _clienteAppService = new ClienteAppService();
+        //    base.OnInit(e);
+        //}
+
+        //protected override void OnUnload(EventArgs e)
+        //{
+        //    if (_clienteAppService != null)
+        //        _clienteAppService.Dispose();
+
+        //    base.OnUnload(e);
+        //}
+
         protected override void OnInit(EventArgs e)
         {
-            _clienteAppService = new ClienteAppService();
-            base.OnInit(e);
+            _clienteAppService = (IClienteAppService)HttpContext.Current.Items["_EFCONTEXT"];
+            base.OnInit(e); 
         }
-
-        protected override void OnUnload(EventArgs e)
-        {
-            if (_clienteAppService != null)
-                _clienteAppService.Dispose();
-
-            base.OnUnload(e);
-        }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,6 +62,13 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
         {
             try
             {
+                //if (_clienteAppService == null)
+                //{
+                //    throw new Exception("Objeto Cliente Servicço nullo!");
+                //}
+
+                //_clienteAppService.Remover(id);
+
                 using (IClienteAppService clienteAppService = new ClienteAppService())
                 {
                     clienteAppService.Remover(id);
@@ -75,6 +87,14 @@ namespace TDSA.DesafioCrud.UI.WebForms.Views
         {
             try
             {
+                //var clienteAppService = (IClienteAppService)HttpContext.Current.Items["_EFCONTEXT"];
+                //if (clienteAppService == null)
+                //{
+                //    throw new Exception("Objeto Cliente Servicço nullo!");
+                //}
+
+                //clienteAppService.GerenciarSituacao(id, op);
+
                 using (IClienteAppService clienteAppService = new ClienteAppService())
                 {
                     clienteAppService.GerenciarSituacao(id, op);

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using TDSA.DesafioCrud.Application.AutoMapper;
+using TDSA.DesafioCrud.UI.WebForms.Handlers;
 
 namespace TDSA.DesafioCrud.UI.WebForms
 {
